@@ -3,7 +3,7 @@ import classes from './Input.module.css'
 
 const Input = (props) => {
     return (
-        <div>
+        <div className={classes.input}>
             <label hrmlFor={props.input.id}>{props.label}  </label>
             <input {...props.input}/>
         </div>
