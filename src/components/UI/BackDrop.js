@@ -1,7 +1,7 @@
-import classes from './Modal.module.css'
+import classes from "./Modal.module.css";
 
-const BackDrop = () => {
-    return <div className={classes.backdrop} />
+const BackDrop = (props) => {
+  return <div className={classes.backdrop} onClick={props.onBackgroundClick} />;
 };
 
 export default BackDrop;
