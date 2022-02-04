@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Header from "./components/Layout/Header";
 import AvailableMeals from "./components/Meals/AvailableMeals";
 import MealsSummary from "./components/Meals/MealsSummary";
