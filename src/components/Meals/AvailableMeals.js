@@ -5,11 +5,17 @@ import MealItem from "./MealItem/MealItem";
 const AvailableMeals = () => {
   const [meals, setMeals] = useState([]);
   const [isloading, setIsLoading] = useState(true);
+  const [httpError, setHttpError] = useState(null);
   useEffect(() => {
     const featchMeals = async () => {
       const response = await fetch(
         "https://react-meals-d9bee-default-rtdb.firebaseio.com/meals.json"
       );
+      
+      if(!response.ok){
+        throw new Error('Something went wrong!')
+      }
+
       const responseData = await response.json();
 
       const loadedMeals = [];
@@ -24,12 +30,21 @@ const AvailableMeals = () => {
       setMeals(loadedMeals);
       setIsLoading(false);
     };
-    featchMeals();
+    featchMeals().catch((error) => {
+      setIsLoading(false);
+      setHttpError(error.message);
+    });
   }, []);
 
   if(isloading){
     return <section className="mealsLoading">
       <p>Loading....</p>
+    </section>
+  }
+
+  if(httpError){
+    return <section className="mealsError">
+      <p>{httpError}</p>
     </section>
   }
 
